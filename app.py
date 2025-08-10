@@ -12,8 +12,8 @@ heart_data = pd.read_csv('heart.csv')
 X = heart_data.drop(columns='target', axis=1)
 Y = heart_data['target']
 
-# Train the logistic regression model
-model = LogisticRegression()
+# Train the logistic regression model with enough iterations
+model = LogisticRegression(max_iter=1000)
 model.fit(X, Y)
 
 @app.route('/')
@@ -40,17 +40,13 @@ def predict():
         ]
         
         # Convert input data to numpy array and reshape for prediction
-        input_data_as_numpy_array = np.asarray(input_data)
-        input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
+        input_data_reshaped = np.asarray(input_data).reshape(1, -1)
         
         # Make the prediction
         prediction = model.predict(input_data_reshaped)
         
         # Return the result
-        if prediction[0] == 0:
-            result = 'The Person does not have a Heart Disease'
-        else:
-            result = 'The Person has Heart Disease'
+        result = 'The Person has Heart Disease' if prediction[0] == 1 else 'The Person does not have a Heart Disease'
         
         return jsonify({'result': result})
     except Exception as e:
@@ -58,4 +54,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
