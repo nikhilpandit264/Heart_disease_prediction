@@ -12,12 +12,18 @@ heart_data = pd.read_csv('heart.csv')
 X = heart_data.drop(columns='target', axis=1)
 Y = heart_data['target']
 
-# Train the logistic regression model with enough iterations
+# Train the logistic regression model
 model = LogisticRegression(max_iter=1000)
 model.fit(X, Y)
 
 @app.route('/')
-def home():
+def landing():
+    # Show the landing page first
+    return render_template('landing.html')
+
+@app.route('/index')
+def index():
+    # Show the prediction form page
     return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
@@ -39,15 +45,10 @@ def predict():
             float(request.form['thal']),
         ]
         
-        # Convert input data to numpy array and reshape for prediction
         input_data_reshaped = np.asarray(input_data).reshape(1, -1)
-        
-        # Make the prediction
         prediction = model.predict(input_data_reshaped)
         
-        # Return the result
         result = 'The Person has Heart Disease' if prediction[0] == 1 else 'The Person does not have a Heart Disease'
-        
         return jsonify({'result': result})
     except Exception as e:
         return jsonify({'error': str(e)})
