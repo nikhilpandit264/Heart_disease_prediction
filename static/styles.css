@@ -1,65 +1,108 @@
-General Body Styling
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
     margin: 0;
     padding: 0;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-  }
-  
-  form {
-    display: grid;
-    gap: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input[type="number"], button {
-    padding: 10px;
-    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
     width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  #result {
-    margin-top: 20px;
+}
+
+h1 {
     text-align: center;
-    font-size: 18px;
+    color: #d32f2f;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
     font-weight: bold;
-  }
-  
-  #result.success {
-    color: green;
-  }
-  
-  #result.failure {
-    color: red;
-  }
-  
+    font-size: 0.95rem;
+    color: #333;
+}
+
+input {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
+}
+
+button {
+    background-color: #d32f2f;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #b71c1c;
+    transform: scale(1.05);
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+#result {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+}
+
+/* Success style */
+#result.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 2px solid #155724;
+}
+
+/* Failure style */
+#result.failure {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 2px solid #721c24;
+}
+
+/* Highlight animation */
+#result.highlight {
+    box-shadow: 0 0 12px rgba(255, 59, 59, 0.7);
+    transform: scale(1.05);
+}
